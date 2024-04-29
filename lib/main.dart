@@ -1,4 +1,5 @@
 import 'package:atma_kitchen/pages/login_page.dart';
+import 'package:atma_kitchen/pages/produk_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 
@@ -15,11 +16,12 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: Center(child: LoginPage()),
-      ),
-      debugShowCheckedModeBanner: false,
-    );
+    return MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: const LoginPage(),
+        routes: {
+          '/produkpage': (context) => const ProdukPage(),
+          '/loginpage': (context) => const LoginPage()
+        });
   }
 }
