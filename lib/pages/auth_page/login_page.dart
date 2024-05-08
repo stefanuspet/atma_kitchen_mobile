@@ -1,8 +1,9 @@
+// ignore_for_file: use_build_context_synchronously
 import 'dart:convert';
-
 import 'package:atma_kitchen/entity/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:atma_kitchen/client/auth_client.dart';
+import 'package:go_router/go_router.dart';
 import 'package:http/http.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -14,6 +15,12 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  @override
+  void initState() {
+    super.initState();
+    handleLoginRoute(context);
+  }
+
   final _fromKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -40,22 +47,31 @@ class _LoginPageState extends State<LoginPage> {
         Response response = await AuthClient.login(auth);
         if (response.statusCode == 200) {
           String token = jsonDecode(response.body)['token'];
-          // ignore: use_build_context_synchronously
-          showSnackBar(context, "token : $token", Colors.green);
+          String abilities = jsonDecode(response.body)['abilities'];
+          handleTokenAndAbilities(token, abilities);
+          setLoggedInStatus(true);
+          showSnackBar(context, "Berhasil Login $abilities", Colors.green);
           await Future.delayed(const Duration(seconds: 1));
-          // ignore: use_build_context_synchronously
-          Navigator.pushReplacementNamed(context, '/produkpage');
+          handleLoginRoute(context);
         } else {
-          // ignore: use_build_context_synchronously
           return showSnackBar(context, '${response.reasonPhrase}', Colors.red);
         }
       } catch (e) {
-        // ignore: use_build_context_synchronously
         showSnackBar(context, e.toString(), Colors.red);
       }
     }
 
     return Scaffold(
+        appBar: AppBar(
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back),
+            onPressed: () {
+              context.go('/');
+            },
+          ),
+          backgroundColor: const Color(0xff1B1B33),
+          elevation: 0.0,
+        ),
         backgroundColor: const Color(0xff1B1B33),
         body: SafeArea(
           child: Padding(
@@ -129,6 +145,29 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
                   ),
+                  const SizedBox(height: 20),
+                  Center(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text(
+                          "reset password ? ",
+                          style: TextStyle(color: Color(0xffCA9762)),
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            context.go('/resetPassword');
+                          },
+                          child: const Text(
+                            "Click Here",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        )
+                      ],
+                    ),
+                  )
                 ],
               ),
             ),
@@ -138,6 +177,7 @@ class _LoginPageState extends State<LoginPage> {
 }
 
 void showSnackBar(BuildContext context, String msg, Color bg) {
+  // ignore: non_constant_identifier_names
   final Scaffold = ScaffoldMessenger.of(context);
   Scaffold.showSnackBar(
     SnackBar(
@@ -147,4 +187,34 @@ void showSnackBar(BuildContext context, String msg, Color bg) {
           label: 'hide', onPressed: Scaffold.hideCurrentSnackBar),
     ),
   );
+}
+
+void handleTokenAndAbilities(String token, String abilities) async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  await prefs.setString('token', token);
+  await prefs.setString('abilities', abilities);
+}
+
+void handleLoginRoute(BuildContext context) async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  final bool? isLoggedIn = prefs.getBool('isLoggedIn');
+  if (isLoggedIn == true) {
+    String? abilities = prefs.getString('abilities');
+    if (abilities == 'ADMIN') {
+      context.go('/homeAdmin');
+    } else if (abilities == 'Customer') {
+      context.go("/homeCustomer");
+    } else if (abilities == 'MO') {
+      context.go('/homeManager');
+    } else if (abilities == 'OWNER') {
+      context.go('/homeOwner');
+    }
+  } else {
+    context.go('/login');
+  }
+}
+
+void setLoggedInStatus(bool isLoggedIn) async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  await prefs.setBool('isLoggedIn', isLoggedIn);
 }

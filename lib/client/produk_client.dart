@@ -1,10 +1,7 @@
 import 'package:http/http.dart';
-import 'package:atma_kitchen/entity/produk.dart';
-import 'dart:convert';
-
 class ProdukClient {
-  static final String url = '10.0.2.2:8080';
-  static final String endpoint = '/api/produk';
+  static const String url = '10.0.2.2:8080';
+  static const String endpoint = '/api/produk';
 
   static Future<Response> getProduk() async {
     try {
