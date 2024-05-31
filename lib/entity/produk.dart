@@ -1,33 +1,43 @@
 import 'dart:convert';
 
 class Produk {
-  int id;
-  String namaProduk;
-  String hargaProuk;
-  String stokProduk;
-  String image;
+  final int idProduk;
+  final String namaProduk;
+  final int harga_satu_loyang;
+  final int harga_setengah_loyang;
+  final int stokProduk;
+  final String image;
+  final int idUser;
 
   Produk({
-    required this.id,
+    required this.idProduk,
     required this.namaProduk,
-    required this.hargaProuk,
+    required this.harga_satu_loyang,
+    required this.harga_setengah_loyang,
     required this.stokProduk,
     required this.image,
+    required this.idUser,
   });
+
   factory Produk.fromRawJson(String str) => Produk.fromJson(json.decode(str));
   factory Produk.fromJson(Map<String, dynamic> json) => Produk(
-        id: json['id'],
-        namaProduk: json['namaProduk'],
-        hargaProuk: json['hargaProuk'],
-        stokProduk: json['stokProduk'],
-        image: json['image'],
+        idProduk: json['id_produk'],
+        namaProduk: json['nama_produk'],
+        harga_satu_loyang: json['harga_satu_loyang'],
+        harga_setengah_loyang: json['harga_setengah_loyang'],
+        stokProduk: json['stok_produk'],
+        image: 'http://10.0.2.2:8000/storage/produk/' + json['image'],
+        idUser: json['id_user'],
       );
+
   String toRawJson() => json.encode(toJson());
   Map<String, dynamic> toJson() => {
-        'id': id,
-        'namaProduk': namaProduk,
-        'hargaProuk': hargaProuk,
-        'stokProduk': stokProduk,
+        'id_produk': idProduk,
+        'nama_produk': namaProduk,
+        'harga_satu_loyang': harga_satu_loyang,
+        'harga_setengah_loyang': harga_setengah_loyang,
+        'stok_produk': stokProduk,
         'image': image,
+        'id_user': idUser,
       };
 }

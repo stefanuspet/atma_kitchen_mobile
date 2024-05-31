@@ -203,7 +203,7 @@ void handleLoginRoute(BuildContext context) async {
     if (abilities == 'ADMIN') {
       context.go('/homeAdmin');
     } else if (abilities == 'Customer') {
-      context.go("/homeCustomer");
+      context.go("/home");
     } else if (abilities == 'MO') {
       context.go('/homeManager');
     } else if (abilities == 'OWNER') {
