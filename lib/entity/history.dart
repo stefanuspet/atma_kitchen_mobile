@@ -6,8 +6,7 @@ class History {
   final String? tanggalAmbil;
   final String? tanggalLunas;
   final String metodePembayaran;
-  final String statusPembayaran;
-  final String statusPengiriman;
+  final String statusPesanan;
   final String jenisPengiriman;
   final int? tip;
   final int? jarak;
@@ -28,8 +27,7 @@ class History {
     this.tanggalAmbil,
     this.tanggalLunas,
     required this.metodePembayaran,
-    required this.statusPembayaran,
-    required this.statusPengiriman,
+    required this.statusPesanan,
     required this.jenisPengiriman,
     this.tip,
     this.jarak,
@@ -52,8 +50,7 @@ class History {
         tanggalAmbil: json['tanggal_ambil'],
         tanggalLunas: json['tanggal_lunas'],
         metodePembayaran: json['metode_pembayaran'],
-        statusPembayaran: json['status_pembayaran'],
-        statusPengiriman: json['status_pengiriman'],
+        statusPesanan: json['status_pesanan'],
         jenisPengiriman: json['jenis_pengiriman'],
         tip: json['tip'],
         jarak: json['jarak'],
@@ -76,8 +73,7 @@ class History {
         'tanggal_ambil': tanggalAmbil,
         'tanggal_lunas': tanggalLunas,
         'metode_pembayaran': metodePembayaran,
-        'status_pembayaran': statusPembayaran,
-        'status_pengiriman': statusPengiriman,
+        'status_pesanan': statusPesanan,
         'jenis_pengiriman': jenisPengiriman,
         'tip': tip,
         'jarak': jarak,

@@ -31,7 +31,7 @@ class BottomNavigationManager extends StatelessWidget {
               break;
             case 2:
               // Ketika item History diklik
-              context.go("/"); // Ganti dengan navigasi ke halaman History
+              context.go("/History"); // Ganti dengan navigasi ke halaman History
               break;
             default:
               break;
