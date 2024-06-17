@@ -1,3 +1,4 @@
+import 'package:atma_kitchen/bottom_nav_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -22,23 +23,26 @@ class _HomeManagerState extends State<HomeManager> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-        child: Scaffold(
-      appBar: AppBar(
-        title: const Text('Home Manager'),
-      ),
-      body: Center(
-        child: Center(
-          child: Column(
-            children: [
-              const Text('Home Manager'),
-              ElevatedButton(
-                onPressed: logout,
-                child: const Text('Logout'),
-              ),
-            ],
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text('Home Manager'),
+        ),
+        body: Center(
+          child: Center(
+            child: Column(
+              children: [
+                const Text('Home Manager'),
+                ElevatedButton(
+                  onPressed: logout,
+                  child: const Text('Logout'),
+                ),
+              ],
+            ),
           ),
         ),
+        bottomNavigationBar: const BottomNavigationManager(),
       ),
-    ));
+      // bottom nav
+    );
   }
 }
