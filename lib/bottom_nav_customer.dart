@@ -36,7 +36,7 @@ class BottomNavigationCustomer extends StatelessWidget {
         switch (index) {
           case 0:
             // Ketika item Home diklik
-            context.go("/"); // Ganti dengan navigasi ke halaman Home
+            context.go("/"); // Ganti dengan navigasi   ke halaman Home
             break;
           case 1:
             // Ketika item Profile diklik
@@ -44,7 +44,7 @@ class BottomNavigationCustomer extends StatelessWidget {
             break;
           case 2:
             // Ketika item History diklik
-            context.go("/"); // Ganti dengan navigasi ke halaman History
+            context.go("/history"); // Ganti dengan navigasi ke halaman History
             break;
           default:
             break;
