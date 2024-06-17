@@ -1,8 +1,13 @@
+import 'package:atma_kitchen/client/bahan_baku_client.dart';
+import 'package:atma_kitchen/entity/bahan_baku.dart';
 import 'package:atma_kitchen/onboarding_screen.dart';
 import 'package:atma_kitchen/pages/auth_page/reset_password.dart';
 import 'package:atma_kitchen/pages/home_page.dart';
 import 'package:atma_kitchen/pages/manager_page/home_manager.dart';
+import 'package:atma_kitchen/pages/manager_page/laporan.dart';
+import 'package:atma_kitchen/pages/owner_page/laporan.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../pages/customer_page/home_customer.dart';
@@ -36,6 +41,16 @@ class AppRoute {
           },
         ),
       ),
+      //laporan manager
+      GoRoute(
+        path: '/laporan',
+        builder: (context, state) => const Laporan(),
+      ),
+      GoRoute(
+        path: '/laporanOw',
+        builder: (context, state) => const LaporanOw(),
+      ),
+
       GoRoute(
         path: '/login',
         builder: (context, state) => const LoginPage(),
