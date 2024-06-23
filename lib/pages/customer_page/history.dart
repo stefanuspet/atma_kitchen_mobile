@@ -83,8 +83,7 @@ class HistoryPage extends ConsumerWidget {
                     tanggalTransaksi: history.tanggalTransaksi,
                     hargaTotal: history.hargaTotal,
                     metodePembayaran: history.metodePembayaran,
-                    statusPembayaran: history.statusPembayaran,
-                    statusPengiriman: history.statusPengiriman,
+                    statusPesanan: history.statusPesanan,
                     jenisPengiriman: history.jenisPengiriman,
                     tip: history.tip,
                     onTap: () {
@@ -115,8 +114,7 @@ class HistoryCard extends StatelessWidget {
   final String tanggalTransaksi;
   final int hargaTotal;
   final String metodePembayaran;
-  final String statusPembayaran;
-  final String statusPengiriman;
+  final String statusPesanan;
   final String jenisPengiriman;
   final int? tip; // Mengubah tip menjadi nullable
   final VoidCallback onTap;
@@ -126,8 +124,7 @@ class HistoryCard extends StatelessWidget {
     required this.tanggalTransaksi,
     required this.hargaTotal,
     required this.metodePembayaran,
-    required this.statusPembayaran,
-    required this.statusPengiriman,
+    required this.statusPesanan,
     required this.jenisPengiriman,
     this.tip, // Mengubah tip menjadi nullable
     required this.onTap,
@@ -158,9 +155,7 @@ class HistoryCard extends StatelessWidget {
                   const SizedBox(height: 4),
                   Text('Metode Pembayaran: $metodePembayaran',
                       style: const TextStyle(fontSize: 14)),
-                  Text('Status Pembayaran: $statusPembayaran',
-                      style: const TextStyle(fontSize: 14)),
-                  Text('Status Pengiriman: $statusPengiriman',
+                  Text('Status Pesanan: $statusPesanan',
                       style: const TextStyle(fontSize: 14)),
                   Text('Jenis Pengiriman: $jenisPengiriman',
                       style: const TextStyle(fontSize: 14)),

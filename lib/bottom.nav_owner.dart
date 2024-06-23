@@ -13,8 +13,8 @@ class BottomNavigationOwner extends StatelessWidget {
           label: "Home",
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.person),
-          label: "Profile",
+          icon: Icon(Icons.receipt_long_rounded),
+          label: "laporan",
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.shop),
@@ -26,11 +26,12 @@ class BottomNavigationOwner extends StatelessWidget {
         switch (index) {
           case 0:
             // Ketika item Home diklik
-            context.go("/"); // Ganti dengan navigasi ke halaman Home
+            context.go("/homeOwner"); // Ganti dengan navigasi ke halaman Home
             break;
           case 1:
             // Ketika item Profile diklik
-            context.go("/"); // Ganti dengan navigasi ke halaman Profile
+            context
+                .go("/laporanOw"); // Ganti dengan navigasi ke halaman Profile
             break;
           case 2:
             // Ketika item History diklik

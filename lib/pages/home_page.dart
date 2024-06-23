@@ -111,7 +111,7 @@ class HomePage extends ConsumerWidget {
                         final produk = produkList[index];
                         return ProductCard(
                           namaProduk: produk.namaProduk,
-                          hargaProduk: produk.harga_satu_loyang,
+                          hargaProduk: produk.harga,
                           stokProduk: produk.stokProduk,
                           image: produk.image,
                           onTap: () {
