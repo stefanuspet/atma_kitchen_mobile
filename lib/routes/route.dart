@@ -9,6 +9,7 @@ import '../pages/customer_page/home_customer.dart';
 import '../pages/admin_page/home_admin.dart';
 import '../pages/owner_page/home_owner.dart';
 import '../pages/auth_page/login_page.dart';
+import '../pages/customer_page/history.dart';
 
 class AppRoute {
   static Future<bool> _checkOnboardingStatus() async {
@@ -63,6 +64,10 @@ class AppRoute {
       GoRoute(
         path: '/homeOwner',
         builder: (context, state) => const HomeOwner(),
+      ),
+      GoRoute(
+        path: '/history',
+        builder: (context, state) => HistoryPage(),
       ),
     ],
   );
